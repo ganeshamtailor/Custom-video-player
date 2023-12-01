@@ -303,6 +303,7 @@ function showControlsAndResetTimer() {
 
 // Listen for mousemove event on the video container
 videoContainer.addEventListener("mousemove", showControlsAndResetTimer);
+videoContainer.addEventListener("touchmove", showControlsAndResetTimer);
 
 // Initialize the inactivity timer when the page loads
 showControlsAndResetTimer();
