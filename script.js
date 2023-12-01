@@ -100,6 +100,7 @@ function handleTimelineUpdate(e) {
 
   tooltip.textContent = currentChapter.chapterName;
   tooltip.style.left = `${percent * 100}%`;
+  document.getElementById('time-and-chapter').textContent = `Time: ${currentTime.toFixed(2)}, Chapter: ${currentChapter.chapterName}`;
 
   if (isScrubbing) {
       e.preventDefault();
@@ -107,6 +108,41 @@ function handleTimelineUpdate(e) {
       timelineContainer.style.setProperty("--progress-position", percent);
   }
 }  
+
+function moveToChapter(chapterName) {
+  const chapterMetaData = [
+    { from: 0, to: 60, chapterName: 'Chapter 1' },
+    { from: 60, to: 120, chapterName: 'Chapter 2' },
+    { from: 120, to: 210, chapterName: 'Chapter 3' },
+  ];
+
+  const chapter = chapterMetaData.find(chapter => chapter.chapterName === chapterName);
+
+  if (chapter) {
+    video.currentTime = chapter.from;
+  }
+}
+
+function displayChapters() {
+  const chapterMetaData = [
+    { from: 0, to: 60, chapterName: 'Chapter 1' },
+    { from: 60, to: 120, chapterName: 'Chapter 2' },
+    { from: 120, to: 210, chapterName: 'Chapter 3' },
+  ];
+
+  const chapterContainer = document.getElementById('chapter-container');
+
+  chapterMetaData.forEach(chapter => {
+    const chapterElement = document.createElement('span');
+    chapterElement.textContent = chapter.chapterName;
+    chapterElement.addEventListener('click', () => moveToChapter(chapter.chapterName));
+
+    chapterContainer.appendChild(chapterElement);
+  });
+}
+
+// Call the function when the page loads
+window.onload = displayChapters;
 
 // Playback Speed
 speedBtn.addEventListener("click", changePlaybackSpeed)

@@ -278,3 +278,19 @@
     white-space: nowrap; 
     pointer-events: none;
   }
+
+  .chapter-container {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 1rem;
+    width: 10rem;
+  }
+  
+  .chapter-section {
+    text-align: center;
+  }
+
+  #chapter-container > span {
+    cursor: pointer;
+    margin-right: 12px;
+  }
